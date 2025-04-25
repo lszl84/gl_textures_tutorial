@@ -3,8 +3,6 @@
 #include <print>
 #include <array>
 
-unsigned int shaderProgram{};
-
 constexpr auto vertexShaderSource = R"(
     #version 330 core
     
