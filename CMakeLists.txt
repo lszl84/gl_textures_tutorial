@@ -49,3 +49,16 @@ target_link_libraries(gl_texture_tutorial
     glew_s
 )
 
+set(TEXTURE_SOURCE "${CMAKE_SOURCE_DIR}/crate.png")
+set(TEXTURE_DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/crate.png")
+
+add_custom_command(
+    OUTPUT ${TEXTURE_DESTINATION}
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${TEXTURE_SOURCE} ${TEXTURE_DESTINATION}
+    DEPENDS ${TEXTURE_SOURCE}
+    COMMENT "Copying crate.png to build directory"
+)
+
+add_custom_target(copy_textures ALL DEPENDS ${TEXTURE_DESTINATION})
+
+add_dependencies(gl_texture_tutorial copy_textures)
